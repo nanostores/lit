@@ -1,7 +1,5 @@
 # Nano Stores Lit
 
-NOTE: THIS PROJECT IS STILL EARLY DAYS, PLEASE DON'T RELY ON IT JUST YET
-
 <img align="right" width="92" height="92" title="Nano Stores logo"
      src="https://nanostores.github.io/nanostores/logo.svg">
 
