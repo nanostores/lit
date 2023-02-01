@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LitElement } from "lit";
-import { WritableAtom } from "nanostores";
+import { Store } from "nanostores";
 import { MultiStoreController } from "./MultiStoreController";
 
 /**
@@ -28,7 +28,7 @@ import { MultiStoreController } from "./MultiStoreController";
  */
 export const withStores = <
   TLitElementClass extends new (...args: any[]) => LitElement,
-  TAtoms extends Array<WritableAtom<unknown>>
+  TAtoms extends Array<Store<unknown>>
 >(
   LitElementClass: TLitElementClass,
   atoms: TAtoms

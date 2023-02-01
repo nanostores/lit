@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactiveControllerHost } from "lit";
-import { WritableAtom } from "nanostores";
+import { Store } from "nanostores";
 import { MultiStoreController } from "./MultiStoreController";
 
 /**
@@ -26,7 +26,7 @@ import { MultiStoreController } from "./MultiStoreController";
  * }
  * ```
  */
-export function useStores<TAtoms extends Array<WritableAtom<unknown>>>(
+export function useStores<TAtoms extends Array<Store<unknown>>>(
   ...atoms: TAtoms
 ) {
   return <TConstructor extends new (...args: any[]) => ReactiveControllerHost>(

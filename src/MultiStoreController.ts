@@ -1,5 +1,5 @@
 import { ReactiveController, ReactiveControllerHost } from "lit";
-import { WritableAtom } from "nanostores";
+import { Store } from "nanostores";
 
 /**
  * A `ReactiveController` that subscribes a `LitElement` to several `nanostores` atoms and updates the host element when any of the atoms changes.
@@ -25,7 +25,7 @@ import { WritableAtom } from "nanostores";
  * ```
  */
 export class MultiStoreController<
-  TAtoms extends [] | ReadonlyArray<WritableAtom<unknown>>
+  TAtoms extends [] | ReadonlyArray<Store<unknown>>
 > implements ReactiveController
 {
   private unsubscribes: undefined | (() => void)[];
@@ -54,6 +54,6 @@ export class MultiStoreController<
     [K in keyof TAtoms]: ReturnType<TAtoms[K]["get"]>;
   } {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return this.atoms.map(<T>(atom: WritableAtom<T>) => atom.get()) as any;
+    return this.atoms.map(<T>(atom: Store<T>) => atom.get()) as any;
   }
 }
