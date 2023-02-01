@@ -1,5 +1,5 @@
 import { ReactiveController, ReactiveControllerHost } from "lit";
-import { WritableAtom } from "nanostores";
+import { Store } from "nanostores";
 
 /**
  * A `ReactiveController` that subscribes a `LitElement` to a `nanostores` atom and updates the host element when the atom changes.
@@ -28,7 +28,7 @@ export class StoreController<AtomType> implements ReactiveController {
 
   constructor(
     private host: ReactiveControllerHost,
-    private atom: WritableAtom<AtomType>
+    private atom: Store<AtomType>
   ) {
     host.addController(this);
   }
