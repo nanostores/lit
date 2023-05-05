@@ -28,7 +28,7 @@
     "postversion": "git push && git push --tags"
   },
   "peerDependencies": {
-    "nanostores": "^0.7.1",
+    "nanostores": "^0.7 || ^0.8",
     "lit": "^2.6.0"
   },
   "devDependencies": {
