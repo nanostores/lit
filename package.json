@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "nanostores": "^0.7 || ^0.8 || ^0.9",
-    "lit": "^2.6.0"
+    "lit": "^2.6.0 || ^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
