@@ -27,16 +27,16 @@ import { MultiStoreController } from "./MultiStoreController";
  * ```
  */
 export function useStores<TAtoms extends Array<Store<unknown>>>(
-  ...atoms: TAtoms
+	...atoms: TAtoms
 ) {
-  return <TConstructor extends new (...args: any[]) => ReactiveControllerHost>(
-    constructor: TConstructor
-  ) => {
-    return class extends constructor {
-      constructor(...args: any[]) {
-        super(...args);
-        new MultiStoreController(this, atoms);
-      }
-    };
-  };
+	return <TConstructor extends new (...args: any[]) => ReactiveControllerHost>(
+		constructor: TConstructor,
+	) => {
+		return class extends constructor {
+			constructor(...args: any[]) {
+				super(...args);
+				new MultiStoreController(this, atoms);
+			}
+		};
+	};
 }

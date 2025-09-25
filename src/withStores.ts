@@ -27,16 +27,18 @@ import { MultiStoreController } from "./MultiStoreController";
  * ```
  */
 export const withStores = <
-  TLitElementClass extends new (...args: any[]) => LitElement,
-  TAtoms extends Array<Store<unknown>>
+	TLitElementClass extends new (
+		...args: any[]
+	) => LitElement,
+	TAtoms extends Array<Store<unknown>>,
 >(
-  LitElementClass: TLitElementClass,
-  atoms: TAtoms
+	LitElementClass: TLitElementClass,
+	atoms: TAtoms,
 ) => {
-  return class LitElementWithStores extends LitElementClass {
-    constructor(...args: any[]) {
-      super(...args);
-      new MultiStoreController(this, atoms);
-    }
-  } as (new (...args: any[]) => LitElement) & TLitElementClass;
+	return class LitElementWithStores extends LitElementClass {
+		constructor(...args: any[]) {
+			super(...args);
+			new MultiStoreController(this, atoms);
+		}
+	} as (new (...args: any[]) => LitElement) & TLitElementClass;
 };

@@ -25,35 +25,38 @@ import { Store } from "nanostores";
  * ```
  */
 export class MultiStoreController<
-  TAtoms extends [] | ReadonlyArray<Store<unknown>>
+	TAtoms extends [] | ReadonlyArray<Store<unknown>>,
 > implements ReactiveController
 {
-  private unsubscribes: undefined | (() => void)[];
+	private unsubscribes: undefined | (() => void)[];
 
-  constructor(private host: ReactiveControllerHost, private atoms: TAtoms) {
-    host.addController(this);
-  }
+	constructor(
+		private host: ReactiveControllerHost,
+		private atoms: TAtoms,
+	) {
+		host.addController(this);
+	}
 
-  // Subscribe to the atom when the host connects
-  hostConnected() {
-    this.unsubscribes = this.atoms.map((atom) =>
-      atom.subscribe(() => this.host.requestUpdate())
-    );
-  }
+	// Subscribe to the atom when the host connects
+	hostConnected() {
+		this.unsubscribes = this.atoms.map((atom) =>
+			atom.subscribe(() => this.host.requestUpdate()),
+		);
+	}
 
-  // Unsubscribe from the atom when the host disconnects
-  hostDisconnected() {
-    this.unsubscribes?.forEach((unsubscribe) => unsubscribe());
-  }
+	// Unsubscribe from the atom when the host disconnects
+	hostDisconnected() {
+		this.unsubscribes?.forEach((unsubscribe) => unsubscribe());
+	}
 
-  /**
-   * The current values of the atoms.
-   * @readonly
-   */
-  get values(): {
-    [K in keyof TAtoms]: ReturnType<TAtoms[K]["get"]>;
-  } {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return this.atoms.map(<T>(atom: Store<T>) => atom.get()) as any;
-  }
+	/**
+	 * The current values of the atoms.
+	 * @readonly
+	 */
+	get values(): {
+		[K in keyof TAtoms]: ReturnType<TAtoms[K]["get"]>;
+	} {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		return this.atoms.map(<T>(atom: Store<T>) => atom.get()) as any;
+	}
 }

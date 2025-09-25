@@ -24,32 +24,32 @@ import { Store } from "nanostores";
  * ```
  */
 export class StoreController<AtomType> implements ReactiveController {
-  private unsubscribe: undefined | (() => void);
+	private unsubscribe: undefined | (() => void);
 
-  constructor(
-    private host: ReactiveControllerHost,
-    private atom: Store<AtomType>
-  ) {
-    host.addController(this);
-  }
+	constructor(
+		private host: ReactiveControllerHost,
+		private atom: Store<AtomType>,
+	) {
+		host.addController(this);
+	}
 
-  // Subscribe to the atom when the host connects
-  hostConnected() {
-    this.unsubscribe = this.atom.subscribe(() => {
-      this.host.requestUpdate();
-    });
-  }
+	// Subscribe to the atom when the host connects
+	hostConnected() {
+		this.unsubscribe = this.atom.subscribe(() => {
+			this.host.requestUpdate();
+		});
+	}
 
-  // Unsubscribe from the atom when the host disconnects
-  hostDisconnected() {
-    this.unsubscribe?.();
-  }
+	// Unsubscribe from the atom when the host disconnects
+	hostDisconnected() {
+		this.unsubscribe?.();
+	}
 
-  /**
-   * The current value of the atom.
-   * @readonly
-   */
-  get value(): AtomType {
-    return this.atom.get();
-  }
+	/**
+	 * The current value of the atom.
+	 * @readonly
+	 */
+	get value(): AtomType {
+		return this.atom.get();
+	}
 }
