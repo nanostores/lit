@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/** biome-ignore-all lint/suspicious/noShadowRestrictedNames: Intentional */
+/** biome-ignore-all lint/suspicious/noExplicitAny: This is safe */
 import type { ReactiveControllerHost } from "lit";
 import type { Store } from "nanostores";
 import { MultiStoreController } from "./MultiStoreController";
