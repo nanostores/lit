@@ -46,7 +46,9 @@ export class MultiStoreController<
 
 	// Unsubscribe from the atom when the host disconnects
 	hostDisconnected() {
-		this.unsubscribes?.forEach((unsubscribe) => unsubscribe());
+		this.unsubscribes?.forEach((unsubscribe) => {
+			unsubscribe();
+		});
 	}
 
 	/**
@@ -56,7 +58,7 @@ export class MultiStoreController<
 	get values(): {
 		[K in keyof TAtoms]: ReturnType<TAtoms[K]["get"]>;
 	} {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		// biome-ignore lint/suspicious/noExplicitAny: This is safe
 		return this.atoms.map(<T>(atom: Store<T>) => atom.get()) as any;
 	}
 }
