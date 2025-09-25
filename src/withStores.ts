@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { LitElement } from "lit";
-import { Store } from "nanostores";
+import type { LitElement } from "lit";
+import type { Store } from "nanostores";
 import { MultiStoreController } from "./MultiStoreController";
 
 /**

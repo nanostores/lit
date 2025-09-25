@@ -1,5 +1,5 @@
-import { ReactiveController, ReactiveControllerHost } from "lit";
-import { Store } from "nanostores";
+import type { ReactiveController, ReactiveControllerHost } from "lit";
+import type { Store } from "nanostores";
 
 /**
  * A `ReactiveController` that subscribes a `LitElement` to several `nanostores` atoms and updates the host element when any of the atoms changes.

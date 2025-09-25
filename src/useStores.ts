@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ReactiveControllerHost } from "lit";
-import { Store } from "nanostores";
+import type { ReactiveControllerHost } from "lit";
+import type { Store } from "nanostores";
 import { MultiStoreController } from "./MultiStoreController";
 
 /**
