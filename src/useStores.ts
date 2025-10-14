@@ -27,8 +27,8 @@ import { MultiStoreController } from "./MultiStoreController";
  * }
  * ```
  */
-export function useStores<TAtoms extends Array<Store<unknown>>>(
-	...atoms: TAtoms
+export function useStores<TAtoms extends Store<unknown>>(
+	...atoms: TAtoms[] | Array<TAtoms[]>
 ) {
 	return <TConstructor extends new (...args: any[]) => ReactiveControllerHost>(
 		constructor: TConstructor,
@@ -36,7 +36,7 @@ export function useStores<TAtoms extends Array<Store<unknown>>>(
 		return class extends constructor {
 			constructor(...args: any[]) {
 				super(...args);
-				new MultiStoreController(this, atoms);
+				new MultiStoreController(this, atoms.flat(Infinity));
 			}
 		};
 	};
