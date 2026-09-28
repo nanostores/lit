@@ -21,7 +21,7 @@
     "check": "tsc --noEmit",
     "format": "biome format src --fix",
     "lint": "biome check src --fix",
-    "test": "echo \"tests not implemented\"",
+    "test": "vitest run",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -36,6 +36,8 @@
     "@biomejs/biome": "2.2.4",
     "@types/node": "^18.11.18",
     "@web/test-runner": "^0.15.0",
-    "typescript": "^5.5"
+    "jsdom": "^24.1.3",
+    "typescript": "^5.5",
+    "vitest": "^2.1.9"
   }
 }
