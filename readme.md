@@ -40,6 +40,9 @@ class MyHeader extends LitElement {
 }
 ```
 
+> [!NOTE]
+> To listen to multiple stores use `@useStores(store1, store2, ...)`.
+
 Or as a mixin with `withStores`:
 
 ```ts
