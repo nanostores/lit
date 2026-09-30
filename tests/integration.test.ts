@@ -8,6 +8,15 @@ import { StoreController } from "../src/StoreController";
 import { useStores } from "../src/useStores";
 import { withStores } from "../src/withStores";
 
+function createHost() {
+	return {
+		addController: vi.fn(),
+		removeController: vi.fn(),
+		requestUpdate: vi.fn(),
+		updateComplete: Promise.resolve(true),
+	};
+}
+
 afterEach(() => {
 	document.body.replaceChildren();
 });
@@ -15,7 +24,7 @@ afterEach(() => {
 describe("StoreController", () => {
 	it("updates on changes while connected, stops after disconnect, and reconnects once", () => {
 		const count = atom(0);
-		const host = { addController: vi.fn(), requestUpdate: vi.fn() };
+		const host = createHost();
 		const controller = new StoreController(host, count);
 		expect(host.addController).toHaveBeenCalledWith(controller);
 		expect(controller.value).toBe(0);
@@ -42,7 +51,7 @@ describe("MultiStoreController", () => {
 	it("tracks each store and releases both subscriptions on disconnect", () => {
 		const first = atom(0);
 		const second = atom("a");
-		const host = { addController: vi.fn(), requestUpdate: vi.fn() };
+		const host = createHost();
 		const controller = new MultiStoreController(host, [first, second] as const);
 		expect(host.addController).toHaveBeenCalledWith(controller);
 		expect(controller.values).toEqual([0, "a"]);
@@ -63,7 +72,9 @@ describe("MultiStoreController", () => {
 		controller.hostConnected();
 		host.requestUpdate.mockClear();
 		first.set(3);
-		expect(host.requestUpdate).toHaveBeenCalledTimes(1);
+		second.set("d");
+		expect(controller.values).toEqual([3, "d"]);
+		expect(host.requestUpdate).toHaveBeenCalledTimes(2);
 	});
 });
 

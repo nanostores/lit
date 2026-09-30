@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "check": "tsc --noEmit",
-    "format": "biome format src --fix",
-    "lint": "biome check src --fix",
+    "check": "tsc --noEmit && tsc -p tests",
+    "format": "biome format src tests --fix",
+    "lint": "biome check src tests --fix",
     "test": "vitest run",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
@@ -34,10 +34,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.4",
-    "@types/node": "^18.11.18",
-    "@web/test-runner": "^0.15.0",
-    "jsdom": "^24.1.3",
+    "@types/node": "^22.20.4",
+    "jsdom": "^30.1.1",
     "typescript": "^5.5",
-    "vitest": "^2.1.9"
+    "vitest": "^5.0.2"
   }
 }
