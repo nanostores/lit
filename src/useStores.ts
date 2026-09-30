@@ -6,8 +6,8 @@ import { MultiStoreController } from "./MultiStoreController";
 
 /**
  * A TypeScript decorator that creates a new `MultiStoreController` for the atoms
- * @decorator `withStores(atoms)`
- * @param atoms The atoms to subscribe to.
+ * @decorator `useStores(...atoms)`
+ * @param atoms The atoms to subscribe to, as separate arguments (not an array).
  *
  * @example
  * ```ts
@@ -17,12 +17,13 @@ import { MultiStoreController } from "./MultiStoreController";
  * import { useStores } from '@nanostores/lit';
  *
  * const count = atom(0);
+ * const name = atom('Nano');
  *
  * @customElement('my-element')
- * @useStores(count)
+ * @useStores(count, name)
  * class MyElement extends LitElement {
  *  render() {
- *   return html\`Count: \${count.get()}\`;
+ *   return html\`\${name.get()}: \${count.get()}\`;
  *   }
  * }
  * ```
