@@ -20,4 +20,5 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run check
-      - run: npx biome ci src tests
+      - run: npx oxlint --deny-warnings src tests
+      - run: npx oxfmt --check src tests

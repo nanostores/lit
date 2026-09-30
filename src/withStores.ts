@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: This is safe */
+/* oxlint-disable typescript/no-explicit-any -- This is safe */
 import type { LitElement } from "lit";
 import type { Store } from "nanostores";
 import { MultiStoreController } from "./MultiStoreController";
@@ -27,9 +27,7 @@ import { MultiStoreController } from "./MultiStoreController";
  * ```
  */
 export const withStores = <
-	TLitElementClass extends new (
-		...args: any[]
-	) => LitElement,
+	TLitElementClass extends new (...args: any[]) => LitElement,
 	TAtoms extends Array<Store<unknown>>,
 >(
 	LitElementClass: TLitElementClass,
