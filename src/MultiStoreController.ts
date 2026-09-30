@@ -26,8 +26,7 @@ import type { Store } from "nanostores";
  */
 export class MultiStoreController<
 	TAtoms extends [] | ReadonlyArray<Store<unknown>>,
-> implements ReactiveController
-{
+> implements ReactiveController {
 	private unsubscribes: undefined | (() => void)[];
 
 	constructor(
@@ -58,7 +57,7 @@ export class MultiStoreController<
 	get values(): {
 		[K in keyof TAtoms]: ReturnType<TAtoms[K]["get"]>;
 	} {
-		// biome-ignore lint/suspicious/noExplicitAny: This is safe
+		// oxlint-disable-next-line typescript/no-explicit-any -- This is safe
 		return this.atoms.map(<T>(atom: Store<T>) => atom.get()) as any;
 	}
 }
